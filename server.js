@@ -29,7 +29,7 @@ app.use(
 
 mongoose
   .connect(
-    "mongodb+srv://prabinstha:prabina123@cluster0-irkbi.mongodb.net/graphqlapi?retryWrites=true"
+    "mongodb+srv://prabinstha:@cluster0-irkbi.mongodb.net/graphqlapi?retryWrites=true"
   )
   .then(
     app.listen(4444, () => {
