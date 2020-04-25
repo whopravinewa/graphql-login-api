@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const graphqlHttp = require("express-graphql");
 const bodyParser = require("body-parser");
 
-// const graphqlScehema = require("./graphql/schema");
-// const graphqlResolver = require("./graphql/resolvers");
+const graphqlSchema = require("./graphql/schema");
+const graphqlResolver = require("./graphql/resolver");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -16,6 +17,15 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(
+  "/graphql",
+  graphqlHttp({
+    schema: graphqlSchema,
+    rootValue: graphqlResolver,
+    graphiql: true,
+  })
+);
 
 mongoose
   .connect(
