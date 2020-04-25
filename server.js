@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const graphqlSchema = require("./graphql/schema");
 const graphqlResolver = require("./graphql/resolver");
 
+const { mongodbUrl } = require("./config/mongodbPw");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -28,9 +30,7 @@ app.use(
 );
 
 mongoose
-  .connect(
-    "mongodb+srv://prabinstha:@cluster0-irkbi.mongodb.net/graphqlapi?retryWrites=true"
-  )
+  .connect(mongodbUrl)
   .then(
     app.listen(4444, () => {
       console.log("Listening at port 4444");
