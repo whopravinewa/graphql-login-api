@@ -14,11 +14,16 @@ module.exports = buildSchema(`
         name:String!
     }
 
+    type RootQuery{
+        user : User!
+    }
+
     type RootMutation{
-        createUser(userInput:UserInputData):User!
+        createUser(userInput : UserInputData):User!
     }
 
     schema{
+        query:RootQuery
         mutation:RootMutation
     }
 `);

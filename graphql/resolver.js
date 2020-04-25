@@ -17,4 +17,12 @@ module.exports = {
     const result = await user.save();
     return { ...result._doc, _id: result._id.toString() };
   },
+  user: async function (args, req) {
+    const user = await User.findById(req.userId);
+    if (!user) {
+      const error = new Error("No User found");
+      throw error;
+    }
+    return { ...user._doc, _id: user._id.toString() };
+  },
 };
